@@ -52,7 +52,7 @@ Over all, a **representative** of $X$ is the matrix $d$ given $X = \{x_1, x_2, .
 
 $$x^* = \text{arg min}_{w\in D} \Sigma^{m}_{i = 1} d(x_i, w)$$
 
-Note that $y$ is nor necessary a member of $X$ but is comes from the same domain as the elements in $X$. I.e. $y$ is a point which the sum of the distance from that point to all other points in $X$ is minimized.
+Note that $y$ is not necessary a member of $X$ but is comes from the same domain as the elements in $X$. I.e. $y$ is a point which the sum of the distance from that point to all other points in $X$ is minimized.
 
 Also notice that $y$ need not to be unique, but it should be uniques if we have choose a good distance function.
 
@@ -68,7 +68,9 @@ $$\Sigma^n_{i = 1} d(x_i, \bar{x}) \le 2 \cdot \Sigma^n_{i = 1} d (x_i, x^*)$$
 
 (We will prove this in lecture 8)
 
-Lemma: For any Euclidean space, the representative of a set of data points is the mean of those data points.
+***
+
+#### Lemma: For any Euclidean space, the representative of a set of data points is the mean of those data points.
 
 Proof:
 
@@ -82,7 +84,7 @@ $$\Sigma^{n}_{i = 1}d(\overrightarrow{y}, x_i) = \Sigma^n_{i = 1} \Sigma^{d}_{k=
 
 Flipping the submission sign $\Sigma^{d}_{k=1} \Sigma^n_{i = 1}(y_k - x_{i}(k))^2$ which is
 
-$$(y(1) x_1(1))^2 + (y(1) - x_2(1))^2 + ... + (y_d - x_1(d))^2 + (y(d) - x_2(d))^2 + ... + (y(d) - x_n(d))^2$$
+$$(y(1) - x_1(1))^2 + (y(1) - x_2(1))^2 + ... + (y_d - x_1(d))^2 + (y(d) - x_2(d))^2 + ... + (y(d) - x_n(d))^2$$
 
 Since out objective here is to find the minimum value, we can calculate the derivative and look for the zero values.
 
@@ -99,3 +101,5 @@ $$\Rightarrow 2 \cdot n \cdot y(d) - 2 \Sigma^n_{i = 1} x_i(d) = 0$$
 $$\Rightarrow y_d = \frac{\Sigma^n_{i = 1} x_i(d)}{n}$$
 
 Note that is the definition of the mean. Therefore, the proportion is proven.
+
+$\hspace{120mm} \blacksquare$
