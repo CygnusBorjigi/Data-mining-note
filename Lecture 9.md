@@ -44,12 +44,12 @@ To begin, we can use brut-force method to find the optimal solution by calculati
 
 For the optimal solution, we can use dynamic programming. First, we need to define the following:
 
-* $\text{Unit}(i, j)$ : The cost of placing points $x_i, x_{i + 1}, ..., x_j$ in to a cluster. The cost can be calculated by $\mu_{i, j} = \frac{\Sigma^j_{\mathcal{l} = i} x_i}{j - i + 1}$. Therefore, $\text{Unit}(i, j) = \Sigma^{j}_{\mathcal{l} = i} (x_{\mathcal{l}} - \mu_{i, j})^2$
+* $\text{Unit}(i, j)$ : The cost of placing points $x_i, x_{i + 1}, ..., x_j$ in to a cluster. The cost can be calculated by $\mu_{i, j} = \frac{\Sigma^j_{\mathcal{l} = i} x_{\mathcal{l}}}{j - i + 1}$. Therefore, $\text{Unit}(i, j) = \Sigma^{j}_{\mathcal{l} = i} (x_{\mathcal{l}} - \mu_{i, j})^2$
 * $\text{Cost}(i, j)$: the cost of partitioning points $1, ..., i$ into $\mathcal{l}$ clusters
 
 After those definition, we can say that for $k = 2$, where we only need to place one boundary point, we have
 
-$$\text{cost}(n, 2) = \text{min }\{\text{ unit }(1, i) + \text{ unit }(i + 1, n)\}$$
+$$\text{cost}(n, 2) = \text{min }\{\text{ cost }(1, i) + \text{ unit }(i + 1, n)\}$$
 
 And for general $k$, we have
 
@@ -65,7 +65,7 @@ The table will be $n \times k$ where the cost displayed in the $(n, k)$ entry of
 
 ##### Run time analysis
 
-Note here we have to compute the cost of $(j, \mathcal{l})$ for every entry which has the cost of $n \cdot (\text{ lookup cost } + \text{ unit computation})$. With in that expression, the lookup cost is $O(n^3, k)$ and the unit computation cost is $\text{ compute mean } + \text{ compute the associated error}$. Therefore, the cost of this whole algorithm is 
+Note here we have to compute the cost of $(j, \mathcal{l})$ for every entry which has the cost of $n \cdot (\text{ lookup cost } + \text{ unit computation})$. With in that expression, the lookup cost is $O(n^3 + k)$ and the unit computation cost is $\text{ compute mean } + \text{ compute the associated error}$. Therefore, the cost of this whole algorithm is 
 
 $$\mu_{i, j} = \frac{\Sigma^{j}_{\mathcal{l} = i} x_i}{j - i + 1} \Rightarrow \text{ unit }(i, j) = \Sigma^{j}_{\mathcal{l} = i}(x_{\mathcal{l} - \mu_{i, j}})^2$$
 
@@ -88,3 +88,38 @@ After the table is completely filled, we can trace back and reconstruct the solu
 
 ##### Improving the algorithm
 
+First, we try to identify the bottle neck of the current algorithm. Notice that for every entry in the table $(j, \mathcal{l})$ we need to do the following computation
+
+$$\text{cost }(j, \mathcal{l}) = \text{ min } \{\text{ cost } (i, \mathcal{l} - 1) + \text{ unit }(i + 1, j)\}$$
+
+Notice that in this calculation, the first term $\text{ cost } (i, \mathcal{l} - 1)$ is a lookup in the table, which is an operation with constant complexity. However, for the operation $\text{ unit } (i + 1, j)$ we need to compute the mean of all the clusters and their distance to all the point in the cloud. This operation is of complexity $O(n^2)$. Therefore, the only way to improve the algorithm, we need to improve the complexity for the calculation of $\text{ unit }(i + 1, j)$. First, observe the following pseudo code:
+
+	unit[i, j]
+	s = 0
+	
+	for w = i ... j do
+		s = s + x_w
+		mean = s (j - i + 1)
+		error = 0
+		
+		for w = i ... j do
+			error = error + (x_w - mean)^2
+			return error
+		EndFor
+	EndFor
+	
+Therefore, we aim to improve this process to constant complexity. Express the computation of unit as the following:
+
+$$\Sigma^{j}_{w = i} (x_w - \text{ mean })^2$$
+
+$$\Rightarrow \Sigma^{j}{w = i} (x^2_w - 2 \cdot \text{ mean } \cdot x_w + \text{ mean}^2)$$
+
+$$\Rightarrow \Sigma^{j}_{w = i} x^2_w + \Sigma^{j}_{w = i} \text{ mean}^2 - 2 \cdot \text{ mean } \cdot \Sigma^{j}_{w = i} x_w$$
+
+Since we know the mean can be calculated using the expression $\text{ mean } = \frac{1}{j - i + 1} \cdot \Sigma^{j}_{w = i} x_w$
+
+Therefore, we can substitute the calculation of the mean into the calculation of the unit
+
+$$\Rightarrow \text{ unit } \Sigma^{j}_{w = i} x^2_w + (j - i + 1) = \text{ mean}^2 + \left(\Sigma^{j}_{w - i} x_w\right)^2 - \frac{1}{j - i + 1} \cdot \left(\Sigma^{j}_{w = i}\right)^2$$
+
+Observe that we can have a sub-routine to calculate all the means before the start of the algorithm. In that case, the calculation of unit also become a lookup operation and therefore, constant time.
