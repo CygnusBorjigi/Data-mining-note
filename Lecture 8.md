@@ -114,3 +114,7 @@ Where:
 #### Iteration phase:
 
 * Iterate as in $k$ means algorithm until convergence
+
+#### Clarification on the choosing by probability
+
+So say we have chosen our center on the first iteration, then we can calculate the distance from that center to each one of the other points. Then, we can visualize the process of taking the square of all those number in to line segments and stack them up. Then, we randomly choose an point on there, and choose whichever point to the the center that has the random point landed on this segment.
