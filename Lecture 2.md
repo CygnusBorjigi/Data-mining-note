@@ -2,11 +2,11 @@
 
 ##### Sampling algorithms that have constant space complexity
 
-### Problem 1: Given a sequence of item $P$ of size $n$ from a random sample $S$ of $P$ with the size of $k$ there $k < n$. The samples choses without replacement.
+### Problem 1: Given a sequence of item $P$ of size $n$. Form a random sample $S$ of $P$ with the size of $k$ there $k < n$. The samples choses without replacement.
 
 #### Algorithm 1
 
-First, without any concern of space or time complexity, we can from the following solution:
+First, without any concern of space or time complexity, we can form the following solution:
 
 	for a = 1 ... n do
 		b = random([1 - a-1])
@@ -29,7 +29,7 @@ For a more space efficient algorithm, notice that at the bare minimum we need to
 
 First, in the case of $n \le k$, every element in $n$ will be selected in a random process. Therefore, the for the initial $k$ element in $S$, we need to store all of them.
 
-Then, we consider all the element in $S$ that comes after the $k$ th element. Essentially, for each of those elements, we only need to decide whether or not we would like to keep it in the memory. If we choose not to keeps it, then it is permanently lost. But if we decide to store it, and since the memory id full, we need to decide among those elements currently in the memory, which of them we need to remove.
+Then, we consider all the element in $S$ that comes after the $k$ th element. Essentially, for each of those elements, we only need to decide whether or not we would like to keep it in the memory. If we choose not to keeps it, then it is permanently lost. But if we decide to store it, and since the memory is full, we need to decide among those elements currently in the memory, which of them we need to remove.
 
 Following that thought, we can have the following algorithm:
 
@@ -59,7 +59,7 @@ Proof:
 
 This is clear in the description of the algorithm that the there are $t + 1$ number we can randomly choose from and among them $k$ number represent the decision of storing that element in the memory.
 
-$\blacksquare$
+$\hspace{120mm} \blacksquare$
 
 
 Second, at iteration $t + 1$ the probability of each element in the memory to be kept in the memory is also $\frac{k}{t + 1}$.
@@ -72,13 +72,13 @@ Therefore, the probability of an element that is currently in the memory to rema
 
 Therefore, we can state that the probability of remain for the element currently in the memory is $\frac{k}{t} \cdot \left(\left(1 - \frac{k}{t}\right) \cdot 1 + \frac{k}{t + 1} \cdot \left(1 - \frac{1}{k}\right)\right)= \frac{k}{t + 1}$
 
-$\blacksquare$
+$\hspace{120mm} \blacksquare$
 
 After we agree on those two statements, we can move to the inductive argument. Which can be stated as: At iteration $t$ the items in the memory is sampled with the probability of $\frac{k}{t}$ and the probability of remain that in iteration $t + 1$ is $\frac{k}{t + 1}$.
 
 Therefore, by induction, the algorithm in correct.
 
-$\blacksquare$
+$\hspace{120mm} \blacksquare$
 
 This algorithm has the following main advantages. It has a linear time complexity, it only requires a single pass through the data, where we do not need to store and evaluated data, and we do not need to know the entire sequence in advance.
 

@@ -20,25 +20,25 @@ We need to generate as output a partition of $x$ into $k$ clusters $C_1, ..., C_
 
 *Definition: Diameter*
 
-Let $S$ be a group of points. The diameter of $S$ is defined as 
+$\hspace{6mm}$ Let $S$ be a group of points. The diameter of $S$ is defined as 
 
 $$\text{max } d(x, x') \text{ where } x, x' \in S \times S$$
 
 #### Solution
 
-Assume $x_i \in \R$ as discussed before, the clustered will contain continuous points. And in this case there is actually a linear time algorithm.
+$\hspace{6mm}$ Assume $x_i \in \R$ as discussed before, the clustered will contain continuous points. And in this case there is actually a $\hspace{6mm}$ linear time algorithm.
 
-Think of the following, we can introduce a threshold $\tau$ to the solution. Such that we never produce any cluster that has a diameter greater than $\tau$.
+$\hspace{6mm}$ Think of the following, we can introduce a threshold $\tau$ to the solution. Such that we never produce any cluster that $\hspace{6mm}$ has a diameter greater than $\tau$.
 
-Notice that $\tau$ can be set to the distance between any two points in the input. Therefore, since there are $n$ points in the input set, there are at most $n^2$ values available for $\tau$.
+$\hspace{6mm}$ Notice that $\tau$ can be set to the distance between any two points in the input. Therefore, since there are $n$ points in the $\hspace{6mm}$ input set, there are at most $n^2$ values available for $\tau$.
 
-Also notice, once we determine the value of $\tau$ the clustering becomes very simple. We can start from the fist point in the input, and initiate a cluster, or each of the following point we check the distance between it and the first point in the cluster. If the distance is less than $\tau$, we grow the cluster by including that point, else we finish the cluster and initiate a new cluster with that point at its beginning.
+$\hspace{6mm}$ Also notice, once we determine the value of $\tau$ the clustering becomes very simple. We can start from the fist point in $\hspace{6mm}$ the input, and initiate a cluster, or each of the following point we check the distance between it and the first point in $\hspace{6mm}$ the cluster. If the distance is less than $\tau$, we grow the cluster by including that point, else we finish the cluster and $\hspace{6mm}$ initiate a new cluster with that point at its beginning.
 
-In this way, even in the worst case we try the all $n^2$ of the $\tau$ s. However, there is a much better way.
+$\hspace{6mm}$ In this way, even in the worst case we try the all $n^2$ of the $\tau$ s. However, there is a much better way.
 
-Notice that there exist a linear relation between the value of $\tau$ and the number $k$ clusters are created. In that, the greater the $\tau$ value is, the smaller $k$ number of clusters are created. Therefore, we can sort the $\tau$ s linearly and do a binary search.
+$\hspace{6mm}$ Notice that there exist a linear relation between the value of $\tau$ and the number $k$ clusters are created. In that, the $\hspace{6mm}$ $\hspace{6mm}$ greater the $\tau$ value is, the smaller $k$ number of clusters are created. Therefore, we can sort the $\tau$ s linearly and do a $\hspace{6mm}$ binary search.
 
-Therefore, the run time of this algorithm is $n \cdot \log n^2 \Rightarrow O(n \log n)$
+$\hspace{6mm}$ Therefore, the run time of this algorithm is $n \cdot \log n^2 \Rightarrow O(n \log n)$
 
 ## Clustering Aggression
 

@@ -25,7 +25,7 @@ Therefore, one of the most intuitive solution to this problem is a linear scan.
 	
 Notice that in this case, we calculate the distance between the given point $q$ and all other points in the given space and find the one with the smallest distance. And this algorithm can be sealift expanded into a method of finding the "k" nearest neighbor. Further more, used building on this algorithm we can also calculate the weighted nearest neighbor. For example the weight can be $e^{-\text{dist}}$
 
-Now, we can calculate the complexity of this algorithm. First, notice that here we are doing calculation on each on the elements, with each point exist in $R^d$, the cost of calculating distance as mentioned in last lecture is $d$. Therefore, the time complexity of this algorithm is $O(n \cdot d)$
+Now, we can calculate the complexity of this algorithm. First, notice that here we are doing calculation on each of the elements, with each point exist in $R^d$, the cost of calculating distance as mentioned in last lecture is $d$. Therefore, the time complexity of this algorithm is $O(n \cdot d)$
 
 To improve on this, since we would like to be a hundred percent sure of our answer, we need to calculate all the distances, the only thing we can do is to reduce $d$.
 
@@ -165,7 +165,7 @@ $$\text{sign}(y) \hspace{6mm} 2 \hspace{6mm} 1 \hspace{6mm} 1 \hspace{6mm} ...$$
 
 Since the Jaccard distance is the fraction between the position in which $x$ and $y$ disagree and the position  which the agree, we can have the following
 
-$$\text{Pr}_{\pi \in \Pi} \left[\text{sigh}{\pi}(x) = \text{sign}_{\pi}(y)\right]$$
+$$\text{Pr}_{\pi \in \Pi} \left[\text{sign}_{\pi}(x) = \text{sign}_{\pi}(y)\right]$$
 
 Therefore, we we use this distance function, two signature are equal if and only if the distance function results in zero.
 
@@ -181,7 +181,7 @@ Step 1: Pick $k$ permutation of the rows
 
 Step 2: Think of $\text{sign}(x)$ as a new vector
 
-Step 3: Let $\text{sign}(x)[I]$ in the $i$ -th permutation, the index of the first row that has $1$ for object $x$
+Step 3: Let $\text{sign}(x)[i]$ in the $i$ -th permutation, the index of the first row that has $1$ for object $x$
 
 ***
 

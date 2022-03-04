@@ -63,9 +63,9 @@ The problem is $NP$ hard if the dimension of the data is more than $1$. However,
 
 The $k$ means algorithm is a particular case in partition clustering where the distance function $d$ is the sum of squares of the Euclidean distance
 
-$$x_i \in \R^d, r_{\mathcal{U}} \in \R^d$$
+$$x_i \in \R^d, x_j \in \R^d$$
 
-$$d(x_i, x_j) = \Sigma^d_{w = 1} (x_i^{(d)} - x_j^{(d)})^2$$
+$$d(x_i, x_j) = \Sigma^d_{w = 1} \left(x_i^{(\mathcal{w})} - x_j^{(\mathcal{w})}\right)^2$$
 
 Therefore, if $d$ is $L_i$ then in this case
 

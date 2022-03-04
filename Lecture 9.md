@@ -40,7 +40,7 @@ Observe that in $1$ dimensional space, the clusters consists of continuous point
 
 To begin, we can use brut-force method to find the optimal solution by calculating the cost of all possible combination of boundary points. Which will result in $\begin{pmatrix}n - 1 \\ k - 1\end{pmatrix} \approx n^k$ Number of calculations. Although it works, but we can do much better than this.
 
-##### Dynamic Programming Solution
+##### Dynamic Programming Solution:
 
 For the optimal solution, we can use dynamic programming. First, we need to define the following:
 

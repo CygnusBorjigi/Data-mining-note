@@ -1,6 +1,6 @@
 # lecture 3 Organized | Distance Function
 
-One of the most crucial question in data mining is "How can be measure how similar or different tow elements in the dats set are?". And one of the most the lost obvious way to answer this question is with a distance function.
+One of the most crucial question in data mining is "How can be measure how similar or different two elements in the data set are?". And one of the most obvious way to answer this question is with a distance function.
 
 In computation, we can be handed with a dataset $X$ as a collection of objects. For the purpose of discussion, we say that the elements can be written as $x, y, z, ...$. For now, we make no assumption about the representation of the objects in $X$. Those objects can be real-valued vectors, binary vectors, sets, times series, or whatever you want them to be.
 
@@ -11,7 +11,7 @@ Given this set $X$ of objects, we need to define a function $d : X \times X \rig
 3. The function has to show symmetry: $$d(x, y) = d(y, x)$$
 4. The function has to show triangle inequality: $$\forall x, y, z \in X \left( d(x, y) \le d(x, z) + d(z, y)\right)$$
 
-Those four properties new so important, that the Computer Science community has come to a decision that any distance function that have those four properties would have a special name, **metrics**. And a data space equipped with a metric function is called a **metric space**.
+Those four properties are so important, that the Computer Science community has come to a decision that any distance function that have those four properties would have a special name, **metrics**. And a data space equipped with a metric function is called a **metric space**.
 
 At this point, it is necessary to introduce the two main types of functions for modeling the similarity of objects. 
 
@@ -41,7 +41,7 @@ If we represent the data using matrix we have the following
 
 $$\text{Data Matrix} \begin{bmatrix}x_{11} & ... & x_{1m}\\ ... & ... & ... \\ x_{n1} & ... & x_{nm}\end{bmatrix}$$
 
-$$\text{Distance Matrix} \begin{bmatrix}0 & ... & ...\\ d(2, 1) & ... & ... \\ d(n, 1) &  d(m, 2) & ... & d(n, n-1), 0\end{bmatrix}$$
+$$\text{Distance Matrix} \begin{bmatrix}0 & ... & ... & ... \\ d(2, 1) & ... & ... & ... \\ d(n, 1) &  d(m, 2) & ... & d(n, n-1), 0\end{bmatrix}$$
 
 #### Similarity function
 
@@ -99,9 +99,9 @@ Dynamic programming is perhaps one of the most important programming concept. In
 
 Following the method of dynamic programing, we can solve the edit distance problem of those two given string.
 
-First, we  mane the two strings $x$ and $y$, then we build a table with dimension $n \times m$ where $x = n$ and $y = m$. After that we define $D(I, j)$  as the representation of the optimal distance between string $x[1 ... i]$ and $y[1 ... j]$.
+First, we  name the two strings $x$ and $y$, then we build a table with dimension $n \times m$ where $x = n$ and $y = m$. After that we define $D(i, j)$  as the representation of the optimal distance between string $x[1 ... i]$ and $y[1 ... j]$.
 
-Now, we have laid the ground work, we need to determine a way to calculate $D(I, j)$. Observe, that for every two given substring, we have the three ways to match them.
+Now, we have laid the ground work, we need to determine a way to calculate $D(i, j)$. Observe, that for every two given substring, we have the three ways to match them.
 
 1. We match the last two characters
 2. We match them by deleting the last character in one string
@@ -109,5 +109,5 @@ Now, we have laid the ground work, we need to determine a way to calculate $D(I,
 
 Therefore, we have the following representation
 
-$$D(i, j) = \begin{cases}\text{min }(D(i - 1, j)) + \text{delete}(x[i])\\ D(i, j - 1) + \text{insert}(y[j]) \\ D(i-1, j-1) + \text{substitute}(x[I], y[j])\end{cases}$$
+$$D(i, j) = \begin{cases}\text{min }(D(i - 1, j)) + \text{delete}(x[i])\\ D(i, j - 1) + \text{insert}(y[j]) \\ D(i-1, j-1) + \text{substitute}(x[i], y[j])\end{cases}$$
 
