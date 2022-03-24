@@ -122,3 +122,4 @@ Consider a set of points $X = \{x_1, ..., x_n\}$ and a distance function $d$ suc
 * $d(x_i, x_j) = d(x_j, x_i)$
 
 The goal here is to partition $X$ into $k$ groups so that the distance between any pair of points lying in different clusters is maximized
+

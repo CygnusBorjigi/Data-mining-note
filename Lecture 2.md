@@ -7,12 +7,12 @@
 #### Algorithm 1
 
 First, without any concern of space or time complexity, we can form the following solution:
-
+```
 	for a = 1 ... n do
 		b = random([1 - a-1])
 		swap P[a] with P[b]
 	end for
-	
+```	
 Here, the algorithm the first generates all possible permutations of the set of elements $P$, then randomly selects one of those permutation, finally it selects the first $k$ elements in that permutation.
 
 Notice that for this algorithm, the time is linear since the work we need to do is directly correlate with the $n$. However, we this algorithm requires us to know $P$ in advance. i.e we need to store all the element ignorer to perform the permutation. 
@@ -34,7 +34,7 @@ Then, we consider all the element in $S$ that comes after the $k$ th element. Es
 Following that thought, we can have the following algorithm:
 
 For the first $k$ element, we store all of them. And after that, we say that for each element $P$ at index $t$, we first generate a random number from the range $1$ to $t$, if that number is greater than $k$, we choose not to store that $P$. But if that random number if less than or equal to $k$, we choose to keep it. In which case, we need to to decide which current element in the memory is needs replace. Since the random number generated is already less than $k$, we can use that random number to represent the index in the memory for which the new element will replace.Thus we can write the following code:
-
+```
 	S := The memory
 	P := the input stream of elements
 	
@@ -50,7 +50,7 @@ For the first $k$ element, we store all of them. And after that, we say that for
 			S[rand] = P[t]
 		t = t + 1
 	end while
-	
+```	
 Now, we prove the correctness of the algorithm using induction. We first need to agree on the following two statement:
 
 First at iteration $t + 1$ the probability of element $p[t+1]$ is $\frac{k}{t + 1}$
