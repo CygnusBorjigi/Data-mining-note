@@ -77,6 +77,7 @@ Algorithm:
 2. Remove the elements that are in $s$ from $\mathcal{U}$
 3. Recompute the size of the remaining sets in $\mathcal{S}$
 4. Repeat from the first step.
+5. Stop the algorithm when $\mathcal{U}$ is empty and return the sets $s$ that are removed
 
 Algorithm
 
@@ -93,6 +94,8 @@ $\hspace{6mm}$ let $s$ be such that $a_s$ is maximal
 $\hspace{6mm} C = C \cup \{s\}$
 
 $\hspace{6mm} X = X \setminus s$
+
+return $C$
 
 Analysis of the algorithm:
 

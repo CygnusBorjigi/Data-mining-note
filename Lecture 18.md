@@ -14,7 +14,7 @@ $$S \subseteq T \rightarrow g \left(s \cup \{x\}\right) - g(s) \ge g \left(T \cu
 
 A set function $f$ is sub-modular function is 
 
-$$\forall A, B \subseteq E \hspace{6mm} F(A) + F(B) \ge F(A + B) + F(A \cap B)$$
+$$\forall A, B \subseteq E \hspace{6mm} F(A) + F(B) \ge F(A \cup B) + F(A \cap B)$$
 
 #### Definition: Monotome Function
 
@@ -38,7 +38,7 @@ In other word, it is essentially saying how much does the value of the function 
 
 #### Definition in terms of marginal value: Sub-modularity
 
-$$\forall A \subset B \subset E, \forall i \in E \setminus B, \hspace{2mm} f_A(i) \ge f_B(i)$$
+$$\forall A \subseteq B \subseteq E, \forall i \in E \setminus B, \hspace{2mm} f_A(i) \ge f_B(i)$$
 
 $$\text{Alternatively}$$
 

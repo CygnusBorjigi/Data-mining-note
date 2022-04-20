@@ -26,7 +26,7 @@ Notice that in this implementation, we are making two recursive calls when encou
 
 Side note, just to give a sense of how bad this is. If we ask our solution what is the $50$ the Fibonacci number, which is quite a reasonable and modest index. The number of step our solution will take to solve this problem is 
 
-$$2^50 = 1, 125, 899, 906, 842, 624 🤪$$
+$$2^{50} = 1, 125, 899, 906, 842, 624$$
 
 To improve on our solution, we need to give a closer look on the three we build for $7$.
 
